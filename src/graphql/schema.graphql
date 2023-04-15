@@ -1,0 +1,166 @@
+  type Query {
+    viewMessages: [Message!]
+
+    users: UsersResult!
+    user(input: UserInput!): UserResult!
+    getUser: UserResult!
+  }
+
+  type Mutation {
+    sendMessage(name: String, content: String): Message!
+    createUser(input: CreateUserInput!): CreateUserResult!
+    signIn(input: SignInInput!): SignInResult!
+  }
+
+  type Subscription {
+    receiveMessage: Message!
+  }
+
+  # core node definition
+  interface Node {
+    id: ID!
+    kind: Kind!
+  }
+
+  # enums
+  enum Role {
+    USER
+    ADMIN
+  }
+
+  enum Kind {
+    User
+    Users
+    SignInResultSuccess
+    ValidationError
+    AuthenticationError
+    AuthorizationError
+    DatabaseError
+    SchemaError
+    DeveloperError
+    APIError
+  }
+
+  # Data types
+  type User implements Node {
+    id: ID!
+    kind: Kind!
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+    token: String
+    roles: [Role!]!
+  }
+
+  # Array types
+  type Users {
+    users: [User!]!
+  }
+
+  type SignInResultSuccess implements Node {
+    id: ID!
+    kind: Kind!
+    token: String!
+    redirect: String!
+  }
+
+  # just for testing kakfa
+  type Message {
+    id: ID!
+    name: String!
+    content: String
+  }
+
+  # Input definitions
+  input UserInput {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+    token: String
+  }
+  input CreateUserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+  }
+  input SignInInput {
+    email: String!
+    password: String!
+  }
+
+
+  # Result unions types
+  union UserResult = User | ValidationError 
+    | AuthenticationError
+    | AuthorizationError
+    | DatabaseError
+    | SchemaError
+    | DeveloperError
+    | APIError
+  union CreateUserResult = User | ValidationError 
+    | AuthenticationError
+    | AuthorizationError
+    | DatabaseError
+    | SchemaError
+    | DeveloperError
+    | APIError
+  union SignInResult = SignInResultSuccess | ValidationError 
+    | AuthenticationError
+    | AuthorizationError
+    | DatabaseError
+    | SchemaError
+    | DeveloperError
+    | APIError
+  union UsersResult = Users | ValidationError 
+    | AuthenticationError
+    | AuthorizationError
+    | DatabaseError
+    | SchemaError
+    | DeveloperError
+    | APIError
+
+  # Error types
+  interface Error {
+    message: String!
+    kind: Kind!
+  }
+
+  type ValidationError implements Error {
+    message: String!
+    kind: Kind!
+  }
+
+  type DatabaseError implements Error {
+    message: String!
+    kind: Kind!
+  }
+
+  type SchemaError implements Error {
+    message: String!
+    kind: Kind!
+  }
+
+  type DeveloperError implements Error {
+    message: String!
+    kind: Kind!
+  }
+
+  type AuthenticationError implements Error {
+    message: String!
+    kind: Kind!
+  }
+
+  type AuthorizationError implements Error {
+    message: String!
+    kind: Kind!
+  }
+
+  type APIError implements Error {
+    message: String!
+    kind: Kind!
+  }
+  

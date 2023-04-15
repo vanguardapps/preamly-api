@@ -1,0 +1,5 @@
+{
+  "expiresIn": 259200,
+  "algorithm": "RS256",
+  "audience": "client-id-of-the-application"
+}
