@@ -1,7 +1,7 @@
 import { KafkaPubSub } from "graphql-kafka-subscriptions";
 import UserModel from "../models/UserModel";
 import filterEmptyProperties from "../utils/filter-empty-properties";
-import { convertToValidError, AuthenticationError } from "../utils/api-error";
+import { convertToValidError, AuthenticationError, DatabaseError } from "../utils/api-error";
 import GQLError from "./gql-error";
 import {
   Resolvers,
@@ -115,6 +115,9 @@ const resolvers: Resolvers = {
         });
         const savedUser = await newUser.save();
         if (!savedUser) {
+          return new GQLError(
+            new DatabaseError(`Error creating new user with email ${email}`)
+          );
         }
         return savedUser.toJSON();
       } catch (err: any) {

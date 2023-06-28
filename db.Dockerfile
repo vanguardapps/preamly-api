@@ -1,0 +1,26 @@
+FROM vanguardapps/hub:preamly-db-base
+
+ARG MONGO_INITDB_ROOT_USERNAME
+ARG MONGO_INITDB_ROOT_PASSWORD
+ARG MONGO_INITDB_PORT
+ARG MONGO_API_DB
+ARG MONGO_API_USER
+ARG MONGO_API_PASS
+
+# pass args along to container env
+ENV MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+ENV MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+ENV MONGO_INITDB_PORT=${MONGO_INITDB_PORT}
+ENV MONGO_API_DB=${MONGO_API_DB}
+ENV MONGO_API_USER=${MONGO_API_USER}
+ENV MONGO_API_PASS=${MONGO_API_PASS}
+
+# mongodb initialization scripts
+COPY db-init.sh /docker-entrypoint-initdb.d/
+
+HEALTHCHECK --interval=20s --timeout=10s --retries=5 CMD echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+
+EXPOSE ${MONGO_INIT_DB_PORT}
+
+CMD ["mongod"]
+

@@ -255,14 +255,6 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
   info: GraphQLResolveInfo
 ) => TResult | Promise<TResult>;
 
-/** Mapping of union types */
-export type ResolversUnionTypes = ResolversObject<{
-  CreateUserResult: ( APIError ) | ( AuthenticationError ) | ( AuthorizationError ) | ( DatabaseError ) | ( DeveloperError ) | ( SchemaError ) | ( User ) | ( ValidationError );
-  SignInResult: ( APIError ) | ( AuthenticationError ) | ( AuthorizationError ) | ( DatabaseError ) | ( DeveloperError ) | ( SchemaError ) | ( SignInResultSuccess ) | ( ValidationError );
-  UserResult: ( APIError ) | ( AuthenticationError ) | ( AuthorizationError ) | ( DatabaseError ) | ( DeveloperError ) | ( SchemaError ) | ( User ) | ( ValidationError );
-  UsersResult: ( APIError ) | ( AuthenticationError ) | ( AuthorizationError ) | ( DatabaseError ) | ( DeveloperError ) | ( SchemaError ) | ( Users ) | ( ValidationError );
-}>;
-
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   APIError: ResolverTypeWrapper<APIError>;
@@ -270,7 +262,7 @@ export type ResolversTypes = ResolversObject<{
   AuthorizationError: ResolverTypeWrapper<AuthorizationError>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   CreateUserInput: CreateUserInput;
-  CreateUserResult: ResolverTypeWrapper<ResolversUnionTypes['CreateUserResult']>;
+  CreateUserResult: ResolversTypes['APIError'] | ResolversTypes['AuthenticationError'] | ResolversTypes['AuthorizationError'] | ResolversTypes['DatabaseError'] | ResolversTypes['DeveloperError'] | ResolversTypes['SchemaError'] | ResolversTypes['User'] | ResolversTypes['ValidationError'];
   DatabaseError: ResolverTypeWrapper<DatabaseError>;
   DeveloperError: ResolverTypeWrapper<DeveloperError>;
   Error: ResolversTypes['APIError'] | ResolversTypes['AuthenticationError'] | ResolversTypes['AuthorizationError'] | ResolversTypes['DatabaseError'] | ResolversTypes['DeveloperError'] | ResolversTypes['SchemaError'] | ResolversTypes['ValidationError'];
@@ -283,15 +275,15 @@ export type ResolversTypes = ResolversObject<{
   Role: Role;
   SchemaError: ResolverTypeWrapper<SchemaError>;
   SignInInput: SignInInput;
-  SignInResult: ResolverTypeWrapper<ResolversUnionTypes['SignInResult']>;
+  SignInResult: ResolversTypes['APIError'] | ResolversTypes['AuthenticationError'] | ResolversTypes['AuthorizationError'] | ResolversTypes['DatabaseError'] | ResolversTypes['DeveloperError'] | ResolversTypes['SchemaError'] | ResolversTypes['SignInResultSuccess'] | ResolversTypes['ValidationError'];
   SignInResultSuccess: ResolverTypeWrapper<SignInResultSuccess>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Subscription: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
   UserInput: UserInput;
-  UserResult: ResolverTypeWrapper<ResolversUnionTypes['UserResult']>;
+  UserResult: ResolversTypes['APIError'] | ResolversTypes['AuthenticationError'] | ResolversTypes['AuthorizationError'] | ResolversTypes['DatabaseError'] | ResolversTypes['DeveloperError'] | ResolversTypes['SchemaError'] | ResolversTypes['User'] | ResolversTypes['ValidationError'];
   Users: ResolverTypeWrapper<Users>;
-  UsersResult: ResolverTypeWrapper<ResolversUnionTypes['UsersResult']>;
+  UsersResult: ResolversTypes['APIError'] | ResolversTypes['AuthenticationError'] | ResolversTypes['AuthorizationError'] | ResolversTypes['DatabaseError'] | ResolversTypes['DeveloperError'] | ResolversTypes['SchemaError'] | ResolversTypes['Users'] | ResolversTypes['ValidationError'];
   ValidationError: ResolverTypeWrapper<ValidationError>;
 }>;
 
@@ -302,7 +294,7 @@ export type ResolversParentTypes = ResolversObject<{
   AuthorizationError: AuthorizationError;
   Boolean: Scalars['Boolean'];
   CreateUserInput: CreateUserInput;
-  CreateUserResult: ResolversUnionTypes['CreateUserResult'];
+  CreateUserResult: ResolversParentTypes['APIError'] | ResolversParentTypes['AuthenticationError'] | ResolversParentTypes['AuthorizationError'] | ResolversParentTypes['DatabaseError'] | ResolversParentTypes['DeveloperError'] | ResolversParentTypes['SchemaError'] | ResolversParentTypes['User'] | ResolversParentTypes['ValidationError'];
   DatabaseError: DatabaseError;
   DeveloperError: DeveloperError;
   Error: ResolversParentTypes['APIError'] | ResolversParentTypes['AuthenticationError'] | ResolversParentTypes['AuthorizationError'] | ResolversParentTypes['DatabaseError'] | ResolversParentTypes['DeveloperError'] | ResolversParentTypes['SchemaError'] | ResolversParentTypes['ValidationError'];
@@ -313,15 +305,15 @@ export type ResolversParentTypes = ResolversObject<{
   Query: {};
   SchemaError: SchemaError;
   SignInInput: SignInInput;
-  SignInResult: ResolversUnionTypes['SignInResult'];
+  SignInResult: ResolversParentTypes['APIError'] | ResolversParentTypes['AuthenticationError'] | ResolversParentTypes['AuthorizationError'] | ResolversParentTypes['DatabaseError'] | ResolversParentTypes['DeveloperError'] | ResolversParentTypes['SchemaError'] | ResolversParentTypes['SignInResultSuccess'] | ResolversParentTypes['ValidationError'];
   SignInResultSuccess: SignInResultSuccess;
   String: Scalars['String'];
   Subscription: {};
   User: User;
   UserInput: UserInput;
-  UserResult: ResolversUnionTypes['UserResult'];
+  UserResult: ResolversParentTypes['APIError'] | ResolversParentTypes['AuthenticationError'] | ResolversParentTypes['AuthorizationError'] | ResolversParentTypes['DatabaseError'] | ResolversParentTypes['DeveloperError'] | ResolversParentTypes['SchemaError'] | ResolversParentTypes['User'] | ResolversParentTypes['ValidationError'];
   Users: Users;
-  UsersResult: ResolversUnionTypes['UsersResult'];
+  UsersResult: ResolversParentTypes['APIError'] | ResolversParentTypes['AuthenticationError'] | ResolversParentTypes['AuthorizationError'] | ResolversParentTypes['DatabaseError'] | ResolversParentTypes['DeveloperError'] | ResolversParentTypes['SchemaError'] | ResolversParentTypes['Users'] | ResolversParentTypes['ValidationError'];
   ValidationError: ValidationError;
 }>;
 

@@ -47,7 +47,7 @@ const startApolloServer = async () => {
           };
         },
       },
-    ],
+    ]
   });
 
   const contextMiddleware = async ({ req, res }: { req: any; res: any }) => {
@@ -137,7 +137,7 @@ const startApolloServer = async () => {
 
   const { url } = await startStandaloneServer<GQLContext>(server, {
     context: contextMiddleware,
-    listen: { port: 3001 },
+    listen: { port: parseInt((process.env.API_PORT! ?? 4000)) },
   });
 
   return url;

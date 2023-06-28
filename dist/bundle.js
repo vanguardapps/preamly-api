@@ -129,7 +129,7 @@ const __filename$1 = fileURLToPath(import.meta.url);
 const __dirname$1 = dirname(__filename$1);
 let options;
 try {
-    options = JSON.parse(fs.readFileSync(path.join(__dirname$1, "../../keys/jwt-options.json"), "utf8"));
+    options = JSON.parse(fs.readFileSync(path.join(__dirname$1, "../keys/jwt-options.json"), "utf8"));
 }
 catch (err) {
     if (err.code === "ENOENT") {
@@ -504,7 +504,7 @@ const startApolloServer = async () => {
     const wsServer = new WebSocketServer({
         noServer: true,
     });
-    const typeDefs = readFileSync(path.join(__dirname, "./graphql/schema.graphql"), { encoding: "utf-8" });
+    const typeDefs = readFileSync(path.join(__dirname, "../src/graphql/schema.graphql"), { encoding: "utf-8" });
     const schema = makeExecutableSchema({ typeDefs, resolvers });
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const serverCleanup = useServer({ schema }, wsServer);
@@ -595,7 +595,7 @@ const startApolloServer = async () => {
     };
     const { url } = await startStandaloneServer(server, {
         context: contextMiddleware,
-        listen: { port: 3001 },
+        listen: { port: 4000 },
     });
     return url;
 };

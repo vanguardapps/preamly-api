@@ -1,0 +1,1 @@
+{"version":3,"file":"filter-empty-properties.js","sourceRoot":"","sources":["../../src/utils/filter-empty-properties.ts"],"names":[],"mappings":"AAAA,MAAM,qBAAqB,GAAG,CAAC,GAAW,EAAU,EAAE;IACpD,OAAO,MAAM,CAAC,WAAW,CAAC,MAAM,CAAC,OAAO,CAAC,GAAG,CAAC,CAAC,MAAM,CAAC,CAAC,CAAC,CAAC,EAAE,KAAK,CAAC,EAAE,EAAE,CAAC,KAAK,CAAC,CAAC,CAAC;AAC/E,CAAC,CAAC;AAEF,eAAe,qBAAqB,CAAC"}

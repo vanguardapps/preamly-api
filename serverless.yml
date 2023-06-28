@@ -18,16 +18,16 @@ functions:
         - src/functions/example/**
       individually: true
     handler: src/functions/example/example.handler
-    vpc:
-      securityGroupIds:
-        - sg-00a2ba770da1af1e6
-      subnetIds:
-        - subnet-14d53558
-        - subnet-fd5904a2
-        - subnet-fdaacecc
-        - subnet-49da8568
-        - subnet-0c5a0a6a
-        - subnet-6e0d0760
+    # vpc:
+    #   securityGroupIds:
+    #     - sg-00a2ba770da1af1e6
+    #   subnetIds:
+    #     - subnet-14d53558
+    #     - subnet-fd5904a2
+    #     - subnet-fdaacecc
+    #     - subnet-49da8568
+    #     - subnet-0c5a0a6a
+    #     - subnet-6e0d0760
     
   # sign-up:
   #   handler: src/functions/sign-up/sign-up.handler
